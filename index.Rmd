@@ -22,10 +22,10 @@ Temperature <- read.csv("Temperature.csv")
 Temperature_plot <- ggplot(Temperature, aes(x = as.numeric(Maximum))) +
   geom_histogram(binwidth = 2, fill = "skyblue", color = "black", alpha = 0.7) +
   labs(title = "Histogram of Daily Temperature Maximum by Total Number of Countries", x = "Temperature", y = "Number of Countries")
+```
 
+```{r}
 print(Temperature_plot)
-
-
 ```
 
 ## Results Section
@@ -40,10 +40,12 @@ Temperature_and_Productivity_plot <- ggplot(Temperature_and_Productivity, aes(x 
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "blue") + 
   labs(x = "Daily Temperature Maximum", y = "GNI per Capita 2010", title = "Daily Temperature's Effect on GNI per capita")
+```
 
+```{r}
 print(Temperature_and_Productivity_plot)
 
-
 ```
+
 ## Conclusion
 In conclusion, this study strongly supported the hypothesis and demonstrated that there is in fact a strong correlation between warmer climate nations and nation's with a higher level of per capita productivity, and possibly even room for causality due to historical and climate related issues. One thing that could improve this experiment would be looking at levels of industrialization in each one of these countries as well as the exposure to natural disasters on a broader scale. Also, looking at various other econometrics could be very helpful in assessing this question further. 
