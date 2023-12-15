@@ -19,9 +19,12 @@ As seen in the data and the chart below, we can see that a much higher percentag
 library(ggplot2)
 Temperature <- read.csv("Temperature.csv")
 
-ggplot(Temperature, aes(x = as.numeric(Maximum))) +
+Temperature_plot <- ggplot(Temperature, aes(x = as.numeric(Maximum))) +
   geom_histogram(binwidth = 2, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Histogram of Daily Temperature Maximum", x = "Temperature", y = "Frequency")
+  labs(title = "Histogram of Daily Temperature Maximum by Total Number of Countries", x = "Temperature", y = "Number of Countries")
+
+print(Temperature_plot)
+
 
 ```
 
@@ -36,7 +39,7 @@ Temperature_and_Productivity <- read.csv("Temperature and Productivity.csv")
 Temperature_and_Productivity_plot <- ggplot(Temperature_and_Productivity, aes(x = as.numeric(Daily.Temperature.Maximum), y = as.numeric(GNI.per.capita.2010))) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "blue") + 
-  labs(x = "Daily Temperature Maximum", y = "GNI per Capita 2010", title = "Scatter Plot with Trendline")
+  labs(x = "Daily Temperature Maximum", y = "GNI per Capita 2010", title = "Daily Temperature's Effect on GNI per capita")
 
 print(Temperature_and_Productivity_plot)
 
