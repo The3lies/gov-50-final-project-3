@@ -1,14 +1,46 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
+author: "Ted Sunshine"
 description: "My final project"
 output:
   distill::distill_article:
     self_contained: false
 ---
 
+## Introduction
+For this study, I analyzed the relationship between a country's climate and its general productivity. The question I was trying to answer was: does a nation's climate have an impact on its productivity? The sample I used was a study by the The World Bank assessing the productivity of countries by their maximum daily temperature. The primary purpose of the study was to see how nations were likely to be affected by climate change, but for the purposes of this project I wanted to look at economic repercussions of climate prior to a major climate catastrophe. I assessed how a region’s daily temperature and climate cycle affect its GNI per capita.This study aims to narrow down which nations are most economically affected by temperature and weather differences, which can give us greater insight into possible reasons why the global south is lagging economically and seeing how those nations might be able to follow similar economic models to more successful countries. My hypothesis for this experiment is that nations with warmer climates are more likely to see lower levels of GNI per capita and overall productivity.  The coded variables will be based on temperature and it will act as the independent variable. The dependent variable will be GNI per capita, coded by its pure numeric value in the data. A result of high average daily temperatures and being correlated with low GDP per capita would indicate that my hypothesis is correct. 
+
+## Data Section:
+
+As seen in the data and the chart below, we can see that a much higher percentage of the countries covered in this study sit on the warmer side of the spectrum. For this study, the average daily high temperature represented our independent variable. This was due to the fact that we were assessing whether the temperature of a nation had a significant impact on the economic output of the nation on a per capita basis. To measure the independent variable I took the study from the World Bank and looked at the average daily high temperatures of the nations in 2011. The reason for looking at the average daily high temperature was due to the fact that most work gets done during the day and therefore one would expect to see whether warm temperatures had a significant impact on productivity and output if we were looking at time that people might be at work, namely when the sun is out and the weather is warm. For the dependent variable I looked at GNI per capita for these nations, as it gives us a level playing field with which to assess these countries. GNI was used as it demonstrates all the revenues that a nation brings in, including those that GDP per capita often neglects. The study looked at 234 countries or territories, which accounts for nearly the entire world's nations and populations. The data from the Independent variable suggests that while there are countries with a vast range in their highest daily temperatures, there are many more with hotter climates, something that has the capacity to skew the results.
+
+```{r}
+
+library(ggplot2)
+Temperature <- read.csv("Temperature.csv")
+
+ggplot(Temperature, aes(x = as.numeric(Maximum))) +
+  geom_histogram(binwidth = 2, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of Daily Temperature Maximum", x = "Temperature", y = "Frequency")
+
+```
+
+## Results Section
+The Results of this study suggest that there is a strong correlation between nations that have higher daily average temperatures and a lower level of productivity or output. The data below shows an agressive regressive trend, in which the few colder nations generate a significantly higher GNI's per capita than their warmer counterparts. While there is certainly a strong correlation, one could honestly argue that there is also a causation. While there are several outliers in the warm nations, the majority of the countries who are in the warm might suffer a infastructure issues or productivity due to their climate. For example, while colder nations do deal with harsher winters, warmer nations deal with more natural disasters such as massively viral infections or hurricanes. With these factors, nations in warmer climates are more predisposed to economic hardships, and with the global north experiencing the industrial revolution first, perhaps due to these natural issues, and colonization being a product of industrialization, colonization set these countries back even further. 
+
+```{r}
+library(ggplot2)
+
+Temperature_and_Productivity <- read.csv("Temperature and Productivity.csv")
+
+Temperature_and_Productivity_plot <- ggplot(Temperature_and_Productivity, aes(x = as.numeric(Daily.Temperature.Maximum), y = as.numeric(GNI.per.capita.2010))) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") + 
+  labs(x = "Daily Temperature Maximum", y = "GNI per Capita 2010", title = "Scatter Plot with Trendline")
+
+print(Temperature_and_Productivity_plot)
 
 
-## Project thoughts
-
-I am interested in exploring data related to...
+```
+## Conclusion
+In conclusion, this study strongly supported the hypothesis and demonstrated that there is in fact a strong correlation between warmer climate nations and nation's with a higher level of per capita productivity, and possibly even room for causality due to historical and climate related issues. One thing that could improve this experiment would be looking at levels of industrialization in each one of these countries as well as the exposure to natural disasters on a broader scale. Also, looking at various other econometrics could be very helpful in assessing this question further. 
